@@ -169,7 +169,26 @@
   }
 
   /* ===== About ===== */
-  .about { background: #FFF9FA; }
+  .about {
+    background: #FFF9FA;
+    position: relative;
+    overflow: hidden;
+  }
+  .about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('about_bg.jpg') center center / cover no-repeat;
+    opacity: 0.08;
+    pointer-events: none;
+  }
+  .about .container {
+    position: relative;
+    z-index: 1;
+  }
   .about-text {
     font-size: 18px;
     line-height: 2;
@@ -234,26 +253,74 @@
 
   /* ===== Bonus ===== */
   .bonus {
-    background: linear-gradient(135deg, #FFD700 0%, #FFA000 100%);
+    background: #FFF9FA;
     text-align: center;
-    padding: 60px 24px;
+    padding: 80px 24px;
   }
-  .bonus-amount {
-    font-size: 72px;
-    font-weight: 900;
-    color: #4A2800;
-    margin-bottom: 8px;
+  .bonus-card {
+    max-width: 600px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #FFF8E1 0%, #FFFDE7 50%, #FFF8E1 100%);
+    border: 3px solid #FFD700;
+    border-radius: 24px;
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(255,215,0,0.2);
+  }
+  .bonus-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, #FFD700, #FFA000, #FFD700, #FFC107);
+    border-radius: 26px;
+    z-index: -1;
+  }
+  .bonus-ribbon {
+    display: inline-block;
+    background: linear-gradient(135deg, #E84393, #FF6B6B);
+    color: white;
+    padding: 6px 28px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
   }
   .bonus-label {
-    font-size: 28px;
+    font-size: 22px;
     font-weight: 800;
     color: #6B4400;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
+  }
+  .bonus-amount {
+    font-size: 80px;
+    font-weight: 900;
+    color: #4A2800;
+    margin-bottom: 4px;
+    line-height: 1;
+  }
+  .bonus-amount span {
+    font-size: 36px;
+    font-weight: 800;
   }
   .bonus-note {
-    font-size: 16px;
-    color: #8B6914;
+    font-size: 13px;
+    color: #999;
   }
+  .bonus-sparkle {
+    position: absolute;
+    color: #FFD700;
+    font-size: 20px;
+    opacity: 0.6;
+  }
+  .bonus-sparkle:nth-child(1) { top: 16px; left: 20px; }
+  .bonus-sparkle:nth-child(2) { top: 12px; right: 24px; font-size: 16px; }
+  .bonus-sparkle:nth-child(3) { bottom: 20px; left: 32px; font-size: 14px; }
+  .bonus-sparkle:nth-child(4) { bottom: 16px; right: 20px; font-size: 18px; }
 
   /* ===== CTA ===== */
   .cta-section {
@@ -305,7 +372,9 @@
   @media (max-width: 768px) {
     .section-title { font-size: 28px; }
     .role-cards { grid-template-columns: 1fr; gap: 16px; }
-    .bonus-amount { font-size: 48px; }
+    .bonus-amount { font-size: 56px; }
+    .bonus-amount span { font-size: 28px; }
+    .bonus-card { padding: 36px 24px; }
     .role-card { padding: 32px 20px; }
   }
 </style>
@@ -405,9 +474,16 @@
 
 <!-- Bonus -->
 <section class="bonus">
-  <p class="bonus-label">入職祝賀金</p>
-  <p class="bonus-amount">50萬日圓</p>
-  <p class="bonus-note">※ 正式員工入職滿6個月後發放</p>
+  <div class="bonus-card">
+    <div class="bonus-sparkle">✦</div>
+    <div class="bonus-sparkle">✦</div>
+    <div class="bonus-sparkle">✦</div>
+    <div class="bonus-sparkle">✦</div>
+    <span class="bonus-ribbon">限時優惠！</span>
+    <p class="bonus-label">入職祝賀金</p>
+    <p class="bonus-amount">50<span>萬日圓</span></p>
+    <p class="bonus-note">※ 正式員工入職滿6個月後發放</p>
+  </div>
 </section>
 
 <!-- CTA -->
