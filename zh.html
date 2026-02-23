@@ -50,7 +50,20 @@
     align-items: center;
     justify-content: center;
   }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('hero_bg.png') center center / cover no-repeat;
+    opacity: 0.85;
+    pointer-events: none;
+  }
   .hero-inner {
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -120,11 +133,15 @@
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(232,67,147,0.4);
   }
+  .hero-yagi-sp { display: none; }
   @media (max-width: 768px) {
     .hero { padding: 56px 24px 32px; min-height: auto; }
+    .hero::before { background-position: 85% center; }
     .hero-inner { flex-direction: column; gap: 0; text-align: center; }
-    .hero-visual { flex: none; order: -1; margin-bottom: 16px; }
-    .hero-yagi { width: 120px; }
+    .hero-visual { flex: none; order: -1; margin-bottom: 8px; align-self: center; }
+    .hero-yagi { width: 100px; }
+    .hero-yagi-pc { display: none; }
+    .hero-yagi-sp { display: block; }
     .hero-logo { justify-content: center; margin-bottom: 12px; }
     .hero-greeting { font-size: 12px; margin-bottom: 4px; }
     .hero h1 { font-size: 24px; margin-bottom: 12px; }
@@ -318,7 +335,8 @@
       <a href="#roles" class="hero-cta">查看招募職位 ▶</a>
     </div>
     <div class="hero-visual">
-      <img class="hero-yagi" src="yagi_full_02_nocircle.svg" alt="Payke Character" />
+      <img class="hero-yagi hero-yagi-pc" src="yagi_full_06_nocircle.svg" alt="Payke Character" />
+      <img class="hero-yagi hero-yagi-sp" src="yagi_full_02_nocircle.svg" alt="Payke Character" />
     </div>
   </div>
 </section>
