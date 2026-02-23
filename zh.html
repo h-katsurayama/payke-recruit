@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payke 招募資訊 - 招募夥伴中！</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+    color: #333;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ===== Language Selector ===== */
+  .lang-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 24px;
+    gap: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  .lang-bar a {
+    font-size: 13px;
+    color: #888;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .lang-bar a.active {
+    color: #E84393;
+    border-bottom: 2px solid #E84393;
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    background: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+    padding: 80px 24px 60px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .hero-text { flex: 1; }
+  .hero-visual { flex: 0 0 280px; text-align: center; }
+  .hero-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .hero-logo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+  .hero-logo span {
+    color: #E84393;
+    font-size: 22px;
+    font-weight: 800;
+  }
+  .hero-greeting {
+    font-size: 16px;
+    color: #E84393;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+  }
+  .hero h1 {
+    font-size: 44px;
+    font-weight: 900;
+    color: #2D3436;
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(transparent 60%, #FFE0EC 60%);
+  }
+  .hero p {
+    font-size: 17px;
+    color: #636E72;
+    margin-bottom: 32px;
+    line-height: 1.9;
+  }
+  .hero-yagi {
+    width: 260px;
+    filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.1));
+  }
+  .hero-cta {
+    display: inline-block;
+    background: linear-gradient(135deg, #FF6B6B, #E84393);
+    color: white;
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(232,67,147,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .hero-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(232,67,147,0.4);
+  }
+  @media (max-width: 768px) {
+    .hero { padding: 56px 24px 32px; min-height: auto; }
+    .hero-inner { flex-direction: column; gap: 0; text-align: center; }
+    .hero-visual { flex: none; order: -1; margin-bottom: 16px; }
+    .hero-yagi { width: 120px; }
+    .hero-logo { justify-content: center; margin-bottom: 12px; }
+    .hero-greeting { font-size: 12px; margin-bottom: 4px; }
+    .hero h1 { font-size: 24px; margin-bottom: 12px; }
+    .hero h1 br { display: none; }
+    .hero p { font-size: 13px; margin-bottom: 20px; line-height: 1.7; }
+    .hero p br { display: none; }
+    .hero-cta { font-size: 14px; padding: 12px 32px; }
+  }
+
+  /* ===== Section Common ===== */
+  section { padding: 80px 24px; }
+  .container { max-width: 900px; margin: 0 auto; }
+  .section-title {
+    font-size: 36px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 16px;
+    color: #2D3436;
+  }
+  .section-subtitle {
+    font-size: 18px;
+    text-align: center;
+    color: #636E72;
+    margin-bottom: 48px;
+  }
+
+  /* ===== About ===== */
+  .about { background: #FFF9FA; }
+  .about-text {
+    font-size: 18px;
+    line-height: 2;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+    color: #555;
+  }
+  .about-text strong { color: #E84393; }
+  .values {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 36px;
+  }
+  .value-tag {
+    background: linear-gradient(135deg, #FF6B6B, #E84393);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  /* ===== Roles ===== */
+  .roles { background: white; }
+  .role-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .role-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 28px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid transparent;
+  }
+  .role-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    border-color: #E84393;
+  }
+  .role-icon {
+    font-size: 56px;
+    margin-bottom: 16px;
+  }
+  .role-card h3 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: #2D3436;
+  }
+  .role-card p {
+    font-size: 15px;
+    color: #636E72;
+    line-height: 1.8;
+  }
+
+  /* ===== Bonus ===== */
+  .bonus {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA000 100%);
+    text-align: center;
+    padding: 60px 24px;
+  }
+  .bonus-amount {
+    font-size: 72px;
+    font-weight: 900;
+    color: #4A2800;
+    margin-bottom: 8px;
+  }
+  .bonus-label {
+    font-size: 28px;
+    font-weight: 800;
+    color: #6B4400;
+    margin-bottom: 12px;
+  }
+  .bonus-note {
+    font-size: 16px;
+    color: #8B6914;
+  }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    background: linear-gradient(135deg, #FF6B6B 0%, #E84393 100%);
+    text-align: center;
+    padding: 80px 24px;
+  }
+  .cta-section h2 {
+    font-size: 36px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 12px;
+  }
+  .cta-section p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 32px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: white;
+    color: #E84393;
+    padding: 18px 56px;
+    border-radius: 50px;
+    font-size: 22px;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+  }
+  .cta-btn:hover { transform: translateY(-2px); }
+  .cta-yagi {
+    width: 120px;
+    margin-top: 32px;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.15));
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    background: #2D3436;
+    color: #B2BEC3;
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 14px;
+  }
+  footer a { color: #DFE6E9; text-decoration: none; }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 768px) {
+    .section-title { font-size: 28px; }
+    .role-cards { grid-template-columns: 1fr; gap: 16px; }
+    .bonus-amount { font-size: 48px; }
+    .role-card { padding: 32px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="lang-bar">
+  <a href="ja.html">日本語</a>
+  <a href="en.html">English</a>
+  <a href="ko.html">한국어</a>
+  <a href="zh.html" class="active">繁體中文</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-logo">
+        <img src="ic_launcher.png" alt="Payke" />
+        <span>Payke</span>
+      </div>
+      <p class="hero-greeting">— WE'RE HIRING —</p>
+      <h1>用你的<em>「專長」</em>，<br>改變全世界的購物體驗。</h1>
+      <p>Payke是一款改變訪日旅客購物體驗的App。<br>
+        無論是網紅・設計師・工程師，<br>
+        讓我們一起成長吧！</p>
+      <a href="#roles" class="hero-cta">查看招募職位 ▶</a>
+    </div>
+    <div class="hero-visual">
+      <img class="hero-yagi" src="yagi_full_02_nocircle.svg" alt="Payke Character" />
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about">
+  <div class="container">
+    <h2 class="section-title">Payke是什麼？</h2>
+    <p class="section-subtitle">改變訪日旅客「購物」方式的App</p>
+    <p class="about-text">
+      Payke是一款訪日旅客專用的購物支援App。只要掃描商品條碼，
+      就能看到<strong>多國語言的商品資訊</strong>——成分、使用方法、口碑評價和優惠券，
+      全方位支援購物所需。<br><br>
+      支援英語、中文、韓語、泰語、越南語、日語。<br><br>
+      作為沖繩發源的新創公司，我們以<strong>「提升全球消費」</strong>為使命，
+      連結日本商品與全世界的消費者。
+    </p>
+    <div class="values">
+      <span class="value-tag">Be Open</span>
+      <span class="value-tag">Play Hard</span>
+      <span class="value-tag">Have Impact</span>
+      <span class="value-tag">Focus on User</span>
+      <span class="value-tag">Chase Ideal</span>
+      <span class="value-tag">Go Fast</span>
+      <span class="value-tag">Be Geek</span>
+    </div>
+  </div>
+</section>
+
+<!-- Roles -->
+<section class="roles" id="roles">
+  <div class="container">
+    <h2 class="section-title">我們正在尋找這樣的夥伴</h2>
+    <p class="section-subtitle">有適合發揮你專長的職位</p>
+    <div class="role-cards">
+      <div class="role-card">
+        <div class="role-icon">📢</div>
+        <h3>網紅</h3>
+        <p>
+          透過社群媒體和內容創作，將Payke的魅力傳遞到全世界。
+          用你的影響力連結日本商品與全球市場！
+          歡迎對行銷和品牌經營有興趣的你。
+        </p>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">🎨</div>
+        <h3>設計師</h3>
+        <p>
+          負責App、網頁、廣告等多元的UI/UX設計。
+          從線框稿設計到原型製作、使用者測試、
+          設計系統建構，全面打造產品體驗。
+        </p>
+      </div>
+      <div class="role-card">
+        <div class="role-icon">💻</div>
+        <h3>工程師</h3>
+        <p>
+          使用Flutter・React・NestJS・TypeScript等現代技術棧進行開發。
+          從需求定義到上線，全端環境讓你全程參與。
+          透過程式碼審查和CI/CD改善，整個團隊一起成長。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bonus -->
+<section class="bonus">
+  <p class="bonus-label">入職祝賀金</p>
+  <p class="bonus-amount">50萬日圓</p>
+  <p class="bonus-note">※ 正式員工入職滿6個月後發放</p>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>先輕鬆聊聊吧？</h2>
+  <p>歡迎輕鬆面談！請隨時聯繫我們。</p>
+  <a href="https://herp.careers/v1/payke" class="cta-btn">應徵・了解更多 ▶</a>
+  <br>
+  <img class="cta-yagi" src="yagi_full_01_nocircle.svg" alt="Payke Character" />
+</section>
+
+<footer>
+  <p>&copy; 2026 Payke, Inc. | <a href="https://payke.co.jp">payke.co.jp</a></p>
+</footer>
+
+</body>
+</html>
