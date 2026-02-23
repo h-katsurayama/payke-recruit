@@ -13,7 +13,7 @@
     overflow-x: hidden;
   }
 
-  /* ===== Language Selector ===== */
+  /* ===== Header Bar ===== */
   .lang-bar {
     position: fixed;
     top: 0;
@@ -23,18 +23,38 @@
     backdrop-filter: blur(10px);
     z-index: 100;
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
     padding: 8px 24px;
-    gap: 12px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.08);
   }
-  .lang-bar a {
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+  .nav-logo img {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+  }
+  .nav-logo span {
+    color: #E84393;
+    font-size: 18px;
+    font-weight: 800;
+  }
+  .nav-langs {
+    display: flex;
+    gap: 12px;
+  }
+  .nav-langs a {
     font-size: 13px;
     color: #888;
     text-decoration: none;
     font-weight: 600;
   }
-  .lang-bar a.active {
+  .nav-langs a.active {
     color: #E84393;
     border-bottom: 2px solid #E84393;
   }
@@ -73,22 +93,6 @@
   }
   .hero-text { flex: 1; }
   .hero-visual { flex: 0 0 280px; text-align: center; }
-  .hero-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  .hero-logo img {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-  }
-  .hero-logo span {
-    color: #E84393;
-    font-size: 22px;
-    font-weight: 800;
-  }
   .hero-greeting {
     font-size: 16px;
     color: #E84393;
@@ -215,7 +219,8 @@
     .hero-yagi { width: 100px; }
     .hero-yagi-pc { display: none; }
     .hero-yagi-sp { display: block; }
-    .hero-logo { justify-content: center; margin-bottom: 12px; }
+    .nav-logo span { font-size: 15px; }
+    .nav-logo img { width: 24px; height: 24px; }
     .hero-greeting { font-size: 12px; margin-bottom: 4px; }
     .hero h1 { font-size: 24px; margin-bottom: 12px; }
     .hero h1 br { display: none; }
@@ -459,20 +464,22 @@
 <body>
 
 <nav class="lang-bar">
-  <a href="ja.html">日本語</a>
-  <a href="en.html">English</a>
-  <a href="ko.html" class="active">한국어</a>
-  <a href="zh.html">繁體中文</a>
+  <a class="nav-logo" href="https://payke.co.jp" target="_blank">
+    <img src="ic_launcher.png" alt="Payke" />
+    <span>Payke</span>
+  </a>
+  <div class="nav-langs">
+    <a href="ja.html">日本語</a>
+    <a href="en.html">English</a>
+    <a href="ko.html" class="active">한국어</a>
+    <a href="zh.html">繁體中文</a>
+  </div>
 </nav>
 
 <!-- Hero -->
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-logo">
-        <img src="ic_launcher.png" alt="Payke" />
-        <span>Payke</span>
-      </div>
       <p class="hero-greeting">— WE'RE HIRING —</p>
       <h1>당신의 <em>「장점」</em>으로<br>세계의 쇼핑을 바꾸자.</h1>
       <p>Payke는 방일 외국인의 쇼핑 경험을 바꾸는 앱입니다.<br>
