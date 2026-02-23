@@ -118,21 +118,94 @@
     filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.1));
   }
   .hero-yagi-sp { display: none; }
+  .hero-cta-wrap {
+    position: relative;
+    display: inline-block;
+  }
+  .hero-cta-badge {
+    display: inline-block;
+    background: #FFD700;
+    color: #4A2800;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 4px 16px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+    animation: badgeBounce 2s ease-in-out infinite;
+  }
+  @keyframes badgeBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
   .hero-cta {
     display: inline-block;
     background: linear-gradient(135deg, #FF6B6B, #E84393);
     color: white;
-    padding: 16px 40px;
+    padding: 20px 52px;
     border-radius: 50px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 800;
     text-decoration: none;
-    box-shadow: 0 4px 15px rgba(232,67,147,0.3);
+    box-shadow: 0 4px 20px rgba(232,67,147,0.4);
     transition: transform 0.2s, box-shadow 0.2s;
+    animation: ctaPulse 2.5s ease-in-out infinite;
+  }
+  @keyframes ctaPulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(232,67,147,0.4); }
+    50% { box-shadow: 0 4px 32px rgba(232,67,147,0.65); }
   }
   .hero-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(232,67,147,0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(232,67,147,0.5);
+    animation: none;
+  }
+
+  /* ===== Floating CTA ===== */
+  .floating-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(10px);
+    padding: 12px 24px;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    transform: translateY(100%);
+    animation: slideUp 0.4s ease-out 1s forwards;
+  }
+  @keyframes slideUp {
+    to { transform: translateY(0); }
+  }
+  .floating-cta-text {
+    font-size: 14px;
+    font-weight: 700;
+    color: #2D3436;
+  }
+  .floating-cta-text span {
+    color: #E84393;
+  }
+  .floating-cta-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #FF6B6B, #E84393);
+    color: white;
+    padding: 12px 32px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 3px 12px rgba(232,67,147,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+  }
+  .floating-cta-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 16px rgba(232,67,147,0.4);
   }
   @media (max-width: 768px) {
     .hero { padding: 56px 24px 32px; min-height: auto; }
@@ -148,7 +221,11 @@
     .hero h1 br { display: none; }
     .hero p { font-size: 13px; margin-bottom: 20px; line-height: 1.7; }
     .hero p br { display: none; }
-    .hero-cta { font-size: 14px; padding: 12px 32px; }
+    .hero-cta { font-size: 15px; padding: 14px 36px; }
+    .hero-cta-badge { font-size: 10px; padding: 3px 12px; margin-bottom: 6px; }
+    .floating-cta { padding: 10px 16px; gap: 12px; }
+    .floating-cta-text { font-size: 12px; }
+    .floating-cta-btn { font-size: 13px; padding: 10px 24px; }
   }
 
   /* ===== Section Common ===== */
@@ -407,7 +484,10 @@
       <p>Paykeは訪日外国人の買い物体験を変えるアプリ。<br>
         インフルエンサー・デザイナー・エンジニア、<br>
         それぞれの力で一緒に成長しませんか？</p>
-      <a href="#roles" class="hero-cta">募集職種を見る ▶</a>
+      <div class="hero-cta-wrap">
+        <div><span class="hero-cta-badge">✨ 積極採用中</span></div>
+        <a href="#roles" class="hero-cta">募集職種を見る ▶</a>
+      </div>
     </div>
     <div class="hero-visual">
       <img class="hero-yagi hero-yagi-pc" src="yagi_full_06_nocircle.svg" alt="Payke Character" />
@@ -502,8 +582,14 @@
 </section>
 
 <footer>
-  <p>&copy; 2026 Payke, Inc. | <a href="https://payke.co.jp">payke.co.jp</a></p>
+  <p style="padding-bottom: 60px;">&copy; 2026 Payke, Inc. | <a href="https://payke.co.jp">payke.co.jp</a></p>
 </footer>
+
+<!-- Floating CTA -->
+<div class="floating-cta">
+  <span class="floating-cta-text"><span>3職種</span>で仲間を募集中！</span>
+  <a href="https://herp.careers/v1/payke" class="floating-cta-btn">今すぐ応募 ▶</a>
+</div>
 
 </body>
 </html>
